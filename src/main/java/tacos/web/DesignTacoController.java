@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
-@RequestMapping
+@RequestMapping("/design")
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
@@ -51,7 +51,7 @@ public class DesignTacoController {
         return new Taco();
     }
 
-    @GetMapping("/design")
+    @GetMapping
     public String showDesignForm(){
         return "design";
     }

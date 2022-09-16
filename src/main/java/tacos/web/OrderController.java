@@ -21,9 +21,9 @@ public class OrderController {
     }
     @PostMapping
     public String processOrder(TacoOrder order, SessionStatus sessionStatus){
-        log.info("Order submitted: {}",order);
+        log.info("Order submitted: {}", order);
         sessionStatus.setComplete();
-        return "redirect:/";
+        return "redirect:/home";
     }
 
 }
