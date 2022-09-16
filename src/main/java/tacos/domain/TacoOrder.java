@@ -7,10 +7,18 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class TacoOrder {
+
+    private static final long serialVersionUID = 1l;
+
+    private Long id;
+
+    private Date placeAt;
+
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
 
@@ -29,7 +37,7 @@ public class TacoOrder {
     @CreditCardNumber(message = "Not a valid credit card number")
     private String ccNumber;
 
-    @Pattern(regexp = "^(0[1-9]|1[0-2])([/])([2-9]\\d)$")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])([/])([2-9]\\d)$", message = "It must be MM/DD format")
     private String ccExpiration;
 
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
