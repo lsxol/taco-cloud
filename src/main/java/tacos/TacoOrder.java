@@ -1,4 +1,4 @@
-package tacos.domain;
+package tacos;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -17,7 +17,7 @@ public class TacoOrder {
 
     private Long id;
 
-    private Date placeAt;
+    private Date placedAt;
 
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
