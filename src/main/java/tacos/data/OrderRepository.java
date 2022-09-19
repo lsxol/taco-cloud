@@ -6,6 +6,6 @@ import tacos.TacoOrder;
 import java.util.UUID;
 
 public interface OrderRepository extends CrudRepository<TacoOrder, UUID> {
-
+public void deleteAllOrders();
 
 }
