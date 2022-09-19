@@ -1,18 +1,18 @@
 package tacos;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Data
+@RequiredArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor(access= AccessLevel.PUBLIC, force = true)
-public class Ingredient{
+public class Ingredient {
 
     @Id
     private final String id;
@@ -22,4 +22,5 @@ public class Ingredient{
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
     }
+
 }

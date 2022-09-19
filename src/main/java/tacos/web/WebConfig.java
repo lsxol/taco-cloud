@@ -10,9 +10,11 @@ import tacos.data.IngredientRepository;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/login");
     }
     @Bean
     public CommandLineRunner dataLoader(IngredientRepository repo) {
