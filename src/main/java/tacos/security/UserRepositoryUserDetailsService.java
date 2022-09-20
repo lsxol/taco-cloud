@@ -10,7 +10,7 @@ import tacos.data.UserRepository;
 
 @Service
 public class UserRepositoryUserDetailsService
-        implements UserDetailsService {
+        implements UserDetailsService{
 
     private UserRepository userRepo;
 
