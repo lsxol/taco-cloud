@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
 @SessionAttributes("order")
 public class DesignTacoController {
 
+
+
     private final IngredientRepository ingredientRepo;
 
     private TacoRepository tacoRepo;
@@ -44,7 +46,7 @@ public class DesignTacoController {
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+        ingredientRepo.findAll().forEach(ingredients::add);
 
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {

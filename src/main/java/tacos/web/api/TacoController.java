@@ -10,18 +10,17 @@ import tacos.Taco;
 import tacos.data.TacoRepository;
 
 @RestController
-@RequestMapping(path = "/api/tacos",produces = "application/json")
-@CrossOrigin(origins = "http://tacocloud:8080")
+@RequestMapping(path = "/api/tacos", produces = "application/json")
+@CrossOrigin(origins = "http:/tacocloud:8080")
 public class TacoController {
-    private TacoRepository tacoRepo;
+    private TacoRepository tacoRepository;
 
-    public TacoController(TacoRepository tacoRepo) {
-        this.tacoRepo = tacoRepo;
+    public TacoController(TacoRepository tacoRepository) {
+        this.tacoRepository = tacoRepository;
     }
     @GetMapping(params = "recent")
     public Iterable<Taco> recentTacos(){
-        PageRequest page = PageRequest.of(0, 12,
-                Sort.by("createdAt").descending());
-        return tacoRepo.findAll(page).getContent();
+        PageRequest page = PageRequest.of(0,12, Sort.by("createdAt").descending());
+        return tacoRepository.findAll(page).getContent();
     }
 }

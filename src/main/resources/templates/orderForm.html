@@ -16,12 +16,13 @@
             Please correct the problems below and resubmit</span>
         </br>
         <h3>Your tacos in this order:</h3>
-        <a th:href="@{/design}" id="another">Design another taco</a><br/>
         <ul>
             <li th:each="taco : ${tacoOrder.tacos}">
                 <span th:text="${taco.name}">taco name</span>
             </li>
         </ul>
+        <a th:href="@{/design}" id="another">Design another taco</a><br/>
+
         <h3>Deliver my taco masterpieces to...</h3>
         <label for="deliveryName">Name: </label>
         <input type="text" th:field="*{deliveryName}"/>

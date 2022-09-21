@@ -3,10 +3,13 @@ package tacos.web;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tacos.Ingredient;
+import tacos.User;
 import tacos.data.IngredientRepository;
+import tacos.data.UserRepository;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -17,8 +20,12 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/login");
     }
     @Bean
-    public CommandLineRunner dataLoader(IngredientRepository repo) {
+    public CommandLineRunner dataLoader(IngredientRepository repo,
+                                        UserRepository userRepo, PasswordEncoder encoder) { // user repo for ease of testing with a built-in user
         return args -> {
+            repo.deleteAll();
+            userRepo.deleteAll();
+
             repo.save(new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP));
             repo.save(new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP));
             repo.save(new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN));
@@ -29,6 +36,10 @@ public class WebConfig implements WebMvcConfigurer {
             repo.save(new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE));
             repo.save(new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE));
             repo.save(new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE));
+
+            userRepo.save(new User("kazik", encoder.encode("kazik"),
+                    "Craig Walls", "123 North Street", "Cross Roads", "TX",
+                    "76227", "123-123-1234"));
         };
     }
 }
