@@ -1,9 +1,11 @@
 package tacos;
 
 import lombok.*;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Setter
 @Getter
@@ -11,7 +13,8 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
 @Entity
-public class Ingredient {
+@RestResource(rel = "ingredients", path = "ingredients")
+public class Ingredient implements Serializable {
 
     @Id
     private final String id;

@@ -1,6 +1,7 @@
 package tacos;
 
 import lombok.*;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +18,14 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name="TACO_USER")
+@RestResource(rel = "users", path = "users")
 public class User implements UserDetails {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private final String username;
